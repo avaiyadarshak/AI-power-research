@@ -1,5 +1,5 @@
 streamlit
-google-genai
 tavily-python
+google-genai
 python-dotenv
 reportlab
