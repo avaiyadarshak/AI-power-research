@@ -1,13 +1,19 @@
 import os
+import streamlit as st
 from google import genai
 from dotenv import load_dotenv
 
 load_dotenv()
 
-client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
-)
+# Get API key from Streamlit Secrets or local .env
+try:
+    gemini_api_key = st.secrets["GEMINI_API_KEY"]
+except Exception:
+    gemini_api_key = os.getenv("GEMINI_API_KEY")
 
+client = genai.Client(
+    api_key=gemini_api_key
+)
 
 def generate_report(company_name, research_data):
 
