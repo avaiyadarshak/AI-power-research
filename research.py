@@ -1,11 +1,17 @@
 import os
+import streamlit as st
 from tavily import TavilyClient
 from dotenv import load_dotenv
 
 load_dotenv()
 
+try:
+    tavily_api_key = st.secrets["TAVILY_API_KEY"]
+except Exception:
+    tavily_api_key = os.getenv("TAVILY_API_KEY")
+
 tavily_client = TavilyClient(
-    api_key=os.getenv("TAVILY_API_KEY")
+    api_key=tavily_api_key
 )
 
 
